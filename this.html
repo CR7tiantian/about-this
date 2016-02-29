@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>关于this</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+<script type="text/javascript">
+// this指向全局对象
+	var name = "aa";
+	function demo() {
+		var name = "zl";
+		console.log(this.name);
+	}
+	demo(); //"aa"
+
+	// this指向该person对象 
+	var age = 20;
+	var person = {
+		age:25,
+		sayAge:function() {
+			console.log(this.age);
+		}
+	}
+	person.sayAge(); //25
+
+	// this指向调用方法的对象
+	var sex = "male";
+	var person2 = {
+		sex:"female",
+		b:{
+			sex:"wwwww",
+			saySex:function() {
+				console.log(this.sex);
+			}
+		}
+	}
+	person2.b.saySex(); //"wwwww"
+
+	//this指向全局对象
+	var hobby = "money";
+	var person3 = {
+		hobby:"house",
+		sayHobby:function() {
+			console.log(this.hobby);
+		}
+	}
+	var another = person3.sayHobby;
+	another(); //"money"
+	// 通过call方法改变this值
+	another.apply(person3);
+
+</script>
+</body>
+</html>
